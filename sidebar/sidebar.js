@@ -85,7 +85,9 @@ function switchRoom(roomId) {
   if (roomId) this.roomId = roomId;
   this.messages = [];
   this.lastSyncToken = '';
+
   this.fetchMessages();
+  this.fetchRoomMembers();
 }
 
 async function inviteUserToRoom() {

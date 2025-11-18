@@ -1,5 +1,21 @@
+html {
+    height: 100%;
+}
+
+.index-container {
+    height: 100vh;
+}
+
 .sidebar {
   min-width: 250px;
+}
+
+.chat-area {
+  flex-grow: 1;
+}
+
+.message-input {
+  min-height: 80px;
 }
 
 .room-list li {
@@ -14,9 +30,4 @@
 .room-list li.active {
   background-color: #bfdbfe;
   font-weight: 500;
-}
-
-.sidebar-list {
-    height: 76vh;
-    overflow-y: scroll;
 }

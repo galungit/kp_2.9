@@ -4,56 +4,56 @@
   <meta charset="UTF-8">
   <title>Matrix Chat</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/alpinejs" defer></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/alpinejs" defer></script>
 
-  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./index.css">
   <link rel="stylesheet" href="./login/login.css">
   <link rel="stylesheet" href="./sidebar/sidebar.css">
+  <link rel="stylesheet" href="./user/user.css">
 
   <script src="./login/login.js"></script>
   <script src="./sidebar/sidebar.js"></script>
   <script src="./chat.js"></script>
+  <script src="./user/user.js"></script>
 
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="index-container bg-gray-100 flex justify-center">
+  <div x-data="chatApp()" :class="accessToken ? '' : 'items-center'" class="flex w-full">
 
-    <div x-data="chatApp()" class="chat-container bg-white rounded-lg shadow-lg flex w-full max-w-5xl">
+  <div id="sidebar-container"></div>
 
-    <div id="sidebar-container"></div>
-
-    <div class="chat-area p-4 flex flex-col w-full">
-      <div id="login-container"></div>
-
-      <div id="chat-container" class="chat-container flex-1 mt-4"></div>
-    </div>
-
+  <div class="chat-area p-4 flex flex-col w-full">
+    <div id="login-container"></div>
+    <div id="chat-container" class="flex-1 mt-4"></div>
   </div>
+
+  <div id="user-container"></div>
+
+</div>
+</body>
+
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     fetch('./login/login.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('login-container').innerHTML = html;
-      })
-      .catch(error => console.error('Error loading login:', error));
+      .then(r => r.text())
+      .then(html => { document.getElementById('login-container').innerHTML = html; });
 
     fetch('./sidebar/sidebar.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('sidebar-container').innerHTML = html;
-      })
-      .catch(error => console.error('Error loading sidebar:', error));
+      .then(r => r.text())
+      .then(html => { document.getElementById('sidebar-container').innerHTML = html; });
 
     fetch('./chat.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('chat-container').innerHTML = html;
-      })
-      .catch(error => console.error('Error loading chat:', error));
+      .then(r => r.text())
+      .then(html => { document.getElementById('chat-container').innerHTML = html; });
+
+    fetch('./user/user.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('user-container').innerHTML = html; });
   });
 </script>
+
 
   <script>
   function chatApp() {
@@ -72,6 +72,7 @@
       inviteUser: '',
       error: '',
       lastSyncToken: '',
+      roomMembers: [],
 
       login,
       createRoom,
@@ -86,5 +87,5 @@
   }
 </script>
 
-</body>
+
 </html>
