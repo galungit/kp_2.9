@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Matrix Chat</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
 
   <link rel="stylesheet" href="./index.css">
   <link rel="stylesheet" href="./login/login.css">
@@ -18,74 +18,76 @@
   <script src="./user/user.js"></script>
 
 </head>
+
 <body class="index-container bg-gray-100 flex justify-center">
   <div x-data="chatApp()" :class="accessToken ? '' : 'items-center'" class="flex w-full">
 
-  <div id="sidebar-container"></div>
+    <div id="sidebar-container"></div>
 
-  <div class="chat-area p-4 flex flex-col w-full">
-    <div id="login-container"></div>
-    <div id="chat-container" class="flex-1 mt-4"></div>
+    <div class="chat-area p-4 flex flex-col w-full">
+      <div id="login-container"></div>
+      <div id="chat-container" class="flex-1 mt-4"></div>
+    </div>
+
+    <div id="user-container" x-show="accessToken"></div>
+
   </div>
 
-  <div id="user-container"></div>
-
-</div>
-</body>
 
 
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('./login/login.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('login-container').innerHTML = html; });
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('./login/login.html')
+        .then(r => r.text())
+        .then(html => { document.getElementById('login-container').innerHTML = html; });
 
-    fetch('./sidebar/sidebar.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('sidebar-container').innerHTML = html; });
+      fetch('./sidebar/sidebar.html')
+        .then(r => r.text())
+        .then(html => { document.getElementById('sidebar-container').innerHTML = html; });
 
-    fetch('./chat.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('chat-container').innerHTML = html; });
+      fetch('./chat.html')
+        .then(r => r.text())
+        .then(html => { document.getElementById('chat-container').innerHTML = html; });
 
-    fetch('./user/user.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('user-container').innerHTML = html; });
-  });
-</script>
-
+      fetch('./user/user.html')
+        .then(r => r.text())
+        .then(html => { document.getElementById('user-container').innerHTML = html; });
+    });
+  </script>
 
   <script>
-  function chatApp() {
-    return {
-      username: '',
-      password: '',
-      accessToken: '',
-      userId: '',
-      roomId: '',
-      joinRoomId: '',
-      newRoomName: '',
-      newRoomId: '',
-      rooms: [],
-      messages: [],
-      newMessage: '',
-      inviteUser: '',
-      error: '',
-      lastSyncToken: '',
-      roomMembers: [],
+    function chatApp() {
+      return {
+        username: '',
+        password: '',
+        accessToken: '',
+        userId: '',
+        roomId: '',
+        joinRoomId: '',
+        newRoomName: '',
+        newRoomId: '',
+        rooms: [],
+        messages: [],
+        newMessage: '',
+        inviteUser: '',
+        error: '',
+        lastSyncToken: '',
+        roomMembers: [],
 
-      login,
-      createRoom,
-      fetchRoomsWithNames,
-      joinRoom,
-      inviteUserToRoom,
-      getRoomName,
-      switchRoom,
-      sendMessage,
-      fetchMessages
+        login,
+        createRoom,
+        fetchRoomsWithNames,
+        joinRoom,
+        inviteUserToRoom,
+        getRoomName,
+        switchRoom,
+        sendMessage,
+        fetchMessages,
+        kickUser,
+        leaveRoom,
+        fetchRoomMembers,
+      }
     }
-  }
-</script>
-
-
+  </script>
+</body>
 </html>

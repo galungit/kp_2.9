@@ -1,0 +1,21 @@
+{
+  "name": "project-kp-2-9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/galungit/kp_2.8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/galungit/kp_2.8/issues"
+  },
+  "homepage": "https://github.com/galungit/kp_2.8#readme"
+}

@@ -3,6 +3,21 @@
     <h2 class="text-xl font-bold mb-4">Rooms</h2>
 
     <div class="room-list space-y-1 px-4">
+  <template x-for="room in rooms" :key="room.roomId">
+    <li class="flex items-center justify-between cursor-pointer rounded-lg p-2 hover:bg-indigo-50"
+        :class="{ 'bg-indigo-100 font-medium': room.roomId === roomId }"
+        @click="switchRoom(room.roomId)">
+
+      <span x-text="room.name || room.roomId" class="flex-1 truncate"></span>
+
+      <button @click.stop="leaveRoom(room.roomId)"
+              class="ml-2 text-red-500 hover:text-red-700 text-xs font-medium">
+        × Видалити
+      </button>
+    </li>
+  </template>
+</div>
+
       <ul class="sidebar-list">
         <template x-for="room in rooms" :key="room.roomId">
           <li
