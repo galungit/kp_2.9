@@ -25,9 +25,9 @@
     <div id="sidebar-container"></div>
 
     <div class="chat-area p-4 flex flex-col w-full">
-      <div id="login-container"></div>
-      <div id="chat-container" class="flex-1 mt-4"></div>
-    </div>
+  <div id="login-container" x-show="!accessToken"></div>
+  <div id="chat-container" class="flex-1 mt-4" x-show="accessToken"></div>
+</div>
 
     <div id="user-container" x-show="accessToken"></div>
 
@@ -56,38 +56,56 @@
   </script>
 
   <script>
-    function chatApp() {
-      return {
-        username: '',
-        password: '',
-        accessToken: '',
-        userId: '',
-        roomId: '',
-        joinRoomId: '',
-        newRoomName: '',
-        newRoomId: '',
-        rooms: [],
-        messages: [],
-        newMessage: '',
-        inviteUser: '',
-        error: '',
-        lastSyncToken: '',
-        roomMembers: [],
+  function chatApp() {
+    return {
+      username: '',
+      password: '',
+      accessToken: '',
+      userId: '',
+      roomId: '',
+      joinRoomId: '',
+      newRoomName: '',
+      newRoomId: '',
+      rooms: [],
+      messages: [],
+      newMessage: '',
+      inviteUser: '',
+      error: '',
+      lastSyncToken: '',
+      roomMembers: [],
 
-        login,
-        createRoom,
-        fetchRoomsWithNames,
-        joinRoom,
-        inviteUserToRoom,
-        getRoomName,
-        switchRoom,
-        sendMessage,
-        fetchMessages,
-        kickUser,
-        leaveRoom,
-        fetchRoomMembers,
-      }
+      editMode: null,
+      editText: '',
+
+      login,
+      createRoom,
+      fetchRoomsWithNames,
+      joinRoom,
+      inviteUserToRoom,
+      getRoomName,
+      switchRoom,
+      sendMessage,
+      fetchMessages,
+      kickUser,
+      leaveRoom,
+      fetchRoomMembers,
+      startEdit,
+      cancelEdit,
+      saveEdit,
+      deleteMessage,
+      playNotificationSound,
+      showDesktopNotification,
     }
-  </script>
+  }
+</script>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+});
+</script>
+
 </body>
 </html>
